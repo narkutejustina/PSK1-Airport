@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PSK1-Airport:war exploded">
+    <output-path>$PROJECT_DIR$/target/PSK1-Airport-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PSK1-Airport" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.omnifaces:omnifaces:2.6" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.2" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-cdi:1.0.0-beta7" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.24" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.1" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.1" />
+          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.193" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/PSK1-Airport-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="PSK1-Airport/web/Web" />
+    </root>
+  </artifact>
+</component>
