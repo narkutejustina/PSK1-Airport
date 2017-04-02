@@ -17,15 +17,15 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Passenger.findAll", query = "SELECT a FROM Passenger a")})
+        @NamedQuery(name = "Passenger.findAll", query = "SELECT a FROM Passenger a"),
+        @NamedQuery(name = "Passenger.findMatch", query = "SELECT a FROM Passenger a where a.personalCode = :pc")})
 public class Passenger implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "PC")
+    private double personalCode;
 
     @Column(name = "Name")
     private String name;
@@ -33,18 +33,13 @@ public class Passenger implements Serializable {
     @Column(name = "Surname")
     private String surname;
 
-    @Column(name = "Age")
-    private int age;
-
-    @Column(name = "Nationality")
-    private String nationality;
-
     @JoinTable(name = "Flight_passenger",
-            joinColumns = {
-                @JoinColumn(name = "flightId", referencedColumnName = "ID")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "passengerId", referencedColumnName = "ID")})
-    @ManyToMany
+        joinColumns = {
+                @JoinColumn(name = "passengerPc", referencedColumnName = "Pc")},
+        inverseJoinColumns = {
+                @JoinColumn(name = "flightId", referencedColumnName = "Id")})
+
+    @ManyToMany(cascade ={CascadeType.PERSIST, CascadeType.MERGE})
     private List<Flight> flights = new ArrayList<>();
 }
 

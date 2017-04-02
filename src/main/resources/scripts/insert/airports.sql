@@ -1,4 +1,5 @@
-INSERT INTO airport (id, name, city, country) VALUES
+
+INSERT INTO airport (code, name, city, country) VALUES
   ('BVA', 'Beauvais-Tillé Airport', 'Paris', 'France'),
   ('BRU', 'Brussels Airport', 'Brussels', 'Belgium'),
   ('CRL', 'Brussels South Charleroi Airport', 'Brussels', 'Belgium'),

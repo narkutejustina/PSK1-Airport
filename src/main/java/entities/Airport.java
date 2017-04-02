@@ -13,8 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(of = "code")
+@ToString(of = "code")
 @Table(name = "Airport")
 @NamedQueries({
         @NamedQuery(name = "Airport.findAll", query = "SELECT a FROM Airport a")})
@@ -23,7 +23,7 @@ public class Airport implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "Code")
     private String code;
 
     @Column(name = "Name")

@@ -11,6 +11,7 @@
 
 <h:body>
     <h1>Flights</h1>
+    <h:link outcome="index">HOME</h:link>
 
     <h:form>
         <p:panel header="Add new flight" style="margin-bottom:10px;">
@@ -33,7 +34,7 @@
                 <p:calendar id="date" value="#{flightsController.newFlight.date}" mindate="#{now}"/>
 
                 <p:outputLabel for="duration" value="Duration (min.):" />
-                <p:inputNumber id="duration" value="#{flightsController.newFlight.duration}"/>
+                <p:inputText id="duration" value="#{flightsController.newFlight.duration}" type="number"/>
             </h:panelGrid>
 
             <p:separator />
@@ -43,27 +44,5 @@
 
         </p:panel>
     </h:form>
-
-    <p:fieldset legend="Flights" collapsed="true" toggleable="true">
-        <p:dataTable value="#{flightsController.getFlights()}" var="flight">
-            <p:column headerText="Departure">
-                <h:outputText value="#{flight.departureAirport.code}-#{flight.departureAirport.title}" />
-            </p:column>
-            <p:column headerText="Arrival">
-                <h:outputText value="#{flight.arrivalAirport.code}-#{flight.arrivalAirport.title}" />
-            </p:column>
-            <p:column headerText="Date">
-                <h:outputText value="#{flight.date}" >
-                    <f:convertDateTime pattern="yyyy-MM-dd" />
-                </h:outputText>
-            </p:column>
-            <p:column headerText="Duration (min)">
-                <h:outputText value="#{flight.duration}" />
-            </p:column>
-            <p:column headerText="Passengers">
-                <h:outputText value="#{flight.passengers.size()}" />
-            </p:column>
-        </p:dataTable>
-    </p:fieldset>
 </h:body>
 </html>
