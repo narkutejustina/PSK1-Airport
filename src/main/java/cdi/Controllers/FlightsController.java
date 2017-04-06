@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Model // tas pats kaip: @Named ir @RequestScoped
+@Model
 @Slf4j
 public class FlightsController {
 
@@ -23,29 +23,42 @@ public class FlightsController {
     @Getter
     private List<Airport> departureAirports;
     @Getter
-    private List<Airport> arrivalAirports;
+    private List<Airport> arrivalAirports ;
+    @Getter
+    private List<Flight> flights;
 
     @Inject
     private AirportDAO airportDAO;
     @Inject
     private FlightDAO flightDAO;
-
     @PostConstruct
     public void init() {
+        flights = flightDAO.getFlights();
         arrivalAirports = departureAirports = airportDAO.getAirports();
     }
+
     @Transactional
     public void addFlight() {
-        flightDAO.create(newFlight);
-        log.info("SUCCESS: new flight added");
-    }
-
-    public List<Flight> getFlights() {
-        return flightDAO.getFlights();
+        Flight existing = getExisting(newFlight);
+        if (existing == null)
+        {
+            flightDAO.create(newFlight);
+            return;
+        }
     }
 
     public void onDepartureAirportChange() {
         arrivalAirports = airportDAO.getAirports();
         arrivalAirports.remove(newFlight.getDepartureAirport());
+    }
+
+    private Flight getExisting(Flight flight) {
+        for (Flight f : flights) {
+            if (f.getArrivalAirport().getCode() == flight.getArrivalAirport().getCode()
+                    && f.getDepartureAirport().getCode() == flight.getDepartureAirport().getCode()
+                    && f.getDate() == flight.getDate())
+                return f;
+        }
+        return null;
     }
 }

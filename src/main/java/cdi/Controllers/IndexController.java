@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Model // tas pats kaip: @Named ir @RequestScoped
-@Slf4j
 public class IndexController {
 
     @Getter

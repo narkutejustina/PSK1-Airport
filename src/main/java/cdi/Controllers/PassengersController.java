@@ -51,7 +51,6 @@ public class PassengersController {
         }
         newPassenger.setFlights(existing.getFlights());
         newPassenger.getFlights().add(selectedFlight);
-        //        existing.getFlights().add(selectedFlight);
         passengerDAO.merge(newPassenger);
     }
 
